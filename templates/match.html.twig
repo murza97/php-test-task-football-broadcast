@@ -94,6 +94,39 @@
 </html>
 
 {% macro renderTeamInfo(team, message) %}
+     <div class="card mb-3">
+        <div class="card-header">
+            {{ team.name }}
+        </div>
+        <div class="card-body">
+            <table class="table table">
+                <thead>
+                <tr>
+                    <th>Общее время вратарей</th>
+                    <th>Общее время защитников</th>
+                    <th>Общее время полузащитников</th>
+                    <th>Общее время нападающих</th>
+                </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            {{ team.getPositionTeamTime(team.players, "В") }}’
+                        </td>
+                        <td>
+                            {{ team.getPositionTeamTime(team.players, "З") }}’
+                        </td>
+                        <td>
+                            {{ team.getPositionTeamTime(team.players, "П") }}’
+                        </td>
+                        <td>
+                            {{ team.getPositionTeamTime(team.players, "Н") }}’
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
     <div class="card mb-3">
         <div class="card-header text-center">
             <div>

@@ -11,14 +11,16 @@ class Player
     private string $playStatus;
     private int $inMinute;
     private int $outMinute;
+    private string $position;
 
-    public function __construct(int $number, string $name)
+    public function __construct(int $number, string $name, string $position)
     {
         $this->number = $number;
         $this->name = $name;
         $this->playStatus = self::BENCH_PLAY_STATUS;
         $this->inMinute = 0;
         $this->outMinute = 0;
+        $this->position = $position;
     }
 
     public function getPlayerGoals(array $message, string $player_number, string $team_name): void
@@ -60,6 +62,11 @@ class Player
                       ($message['details']['team'] == $team_name)
             ) { echo "<img src='https://www.soccer.ru/sites/all/themes/newtheme/images/events-icons/yellow_red.png'>","&nbsp"; }
         }
+    }
+
+    public function getPosition(): string
+    {
+        return $this->position;
     }
 
     public function getNumber(): int
