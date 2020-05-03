@@ -41,6 +41,27 @@ class Player
         }
     }
 
+    public function getCards(array $message, string $player_number, string $team_name): void {
+        $count = 0;
+
+        foreach ($message as $message) {
+            if (($message['type'] == "yellowCard") && 
+                ($message['details']['playerNumber'] == $player_number) &&
+                ($message['details']['team'] == $team_name)
+               ) {
+                $count++;
+                if ($count == 1) {
+                    echo "<img src='https://www.soccer.ru/sites/all/themes/newtheme/images/events-icons/card.png'>","&nbsp";
+                } else {
+                    echo "<img src='https://www.soccer.ru/sites/all/themes/newtheme/images/events-icons/yellow_red.png'>","&nbsp";
+                }
+            } elseif (($message['type'] == "redCard") && 
+                      ($message['details']['playerNumber'] == $player_number) &&
+                      ($message['details']['team'] == $team_name)
+            ) { echo "<img src='https://www.soccer.ru/sites/all/themes/newtheme/images/events-icons/yellow_red.png'>","&nbsp"; }
+        }
+    }
+
     public function getNumber(): int
     {
         return $this->number;
