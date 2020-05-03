@@ -1,0 +1,12 @@
+version: "3.7"
+
+services:
+  php:
+    container_name: football_php
+    build:
+      context: ./.docker/php
+    working_dir: /code
+    volumes:
+      - "./:/code"
+    environment:
+      - MESSAGE=Build with Docker
