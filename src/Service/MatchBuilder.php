@@ -89,6 +89,9 @@ class MatchBuilder
             switch ($event['type']) {
                 case 'startPeriod':
                     $period++;
+                    if ($period == 1) {
+                        $minute = 0;
+                    }
 
                     $players = $details['team1']['startPlayerNumbers'] ?? [];
                     if (count($players)) {
@@ -148,6 +151,8 @@ class MatchBuilder
                 return Match::GOAL_MESSAGE_TYPE;
             case 'replacePlayer':
                 return Match::REPLACE_PLAYER_MESSAGE_TYPE;
+            case 'startPeriod':
+                return Match::START_PERIOD_MESSAGE_TYPE;
             default:
                 return Match::INFO_MESSAGE_TYPE;
         }

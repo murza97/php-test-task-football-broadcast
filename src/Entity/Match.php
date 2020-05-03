@@ -5,7 +5,7 @@ namespace App\Entity;
 class Match
 {
     public const INFO_MESSAGE_TYPE             = 'info';
-    public const START_PERIOS_MESSAGE_TYPE     = 'startPeriod';
+    public const START_PERIOD_MESSAGE_TYPE     = 'startPeriod';
     public const DANGEROUS_MOMENT_MESSAGE_TYPE = 'dangerousMoment';
     public const GOAL_MESSAGE_TYPE             = 'goal';
     public const YELLOW_CARD_MESSAGE_TYPE      = 'yellowCard';
@@ -14,6 +14,7 @@ class Match
 
     private const MESSAGE_TYPES = [
         self::INFO_MESSAGE_TYPE,
+        self::START_PERIOD_MESSAGE_TYPE,
         self::DANGEROUS_MOMENT_MESSAGE_TYPE,
         self::GOAL_MESSAGE_TYPE,
         self::YELLOW_CARD_MESSAGE_TYPE,
