@@ -85,15 +85,15 @@
         </div>
         <div class="col-md-4">
             {% import _self as render %}
-            {{ render.renderTeamInfo(match.homeTeam) }}
-            {{ render.renderTeamInfo(match.awayTeam) }}
+            {{ render.renderTeamInfo(match.homeTeam, match.messages) }}
+            {{ render.renderTeamInfo(match.awayTeam, match.messages) }}
         </div>
     </div>
 </div>
 </body>
 </html>
 
-{% macro renderTeamInfo(team) %}
+{% macro renderTeamInfo(team, message) %}
     <div class="card mb-3">
         <div class="card-header text-center">
             <div>
@@ -121,6 +121,7 @@
                         </td>
                         <td>
                             {{ player.name }}
+                            {{ player.getPlayerGoals(message, player.number, team.name) }}
                         </td>
                         <td>
                             {{ player.playTime }}’

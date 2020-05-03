@@ -21,6 +21,26 @@ class Player
         $this->outMinute = 0;
     }
 
+    public function getPlayerGoals(array $message, string $player_number, string $team_name): void
+    {
+        $count = 0;
+        $i = 0;
+        foreach ($message as $message) {
+            if (($message['type'] == "goal") && 
+                ($message['details']['playerNumber'] == $player_number) &&
+                ($message['details']['team'] == $team_name)
+               ) {
+                $count++;
+            }
+        }
+    
+        if ($count > 0) {
+            for ($i=0; $i < $count; $i++) {
+                echo "<img src='https://www.soccer.ru/sites/all/themes/newtheme/images/events-icons/goal.png'>","&nbsp";
+            }
+        }
+    }
+
     public function getNumber(): int
     {
         return $this->number;

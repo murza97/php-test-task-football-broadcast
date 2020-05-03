@@ -120,7 +120,8 @@ class MatchBuilder
             $match->addMessage(
                 $this->buildMinuteString($period, $event),
                 $event['description'],
-                $this->buildMessageType($event)
+                $this->buildMessageType($event),
+                $event['details']
             );
         }
     }

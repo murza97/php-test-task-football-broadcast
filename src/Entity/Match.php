@@ -74,7 +74,7 @@ class Match
         return $this->messages;
     }
 
-    public function addMessage(string $minute, string $text, string $type): void
+    public function addMessage(string $minute, string $text, string $type, array $details): void
     {
         $this->assertCorrectType($type);
 
@@ -82,6 +82,7 @@ class Match
             'minute' => $minute,
             'text'   => $text,
             'type'   => $type,
+            'details' => $details,
         ];
     }
 
