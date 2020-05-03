@@ -26,6 +26,18 @@ class Team
         $this->goals = 0;
     }
 
+    public function getPositionTeamTime($teamPlayers, $position): int
+    {
+        $sum = 0;
+        foreach($teamPlayers as $players) {
+            if ($players->getPosition() == $position) {
+                $sum = $sum + $players->getPlayTime();
+            }
+        }
+
+        return $sum;
+    }
+
     public function getName(): string
     {
         return $this->name;

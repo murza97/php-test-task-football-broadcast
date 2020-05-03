@@ -73,7 +73,7 @@ class MatchBuilder
         $teamInfo = $event['details']["team$teamNumber"];
         $players = [];
         foreach ($teamInfo['players'] as $playerInfo) {
-            $players[] = new Player($playerInfo['number'], $playerInfo['name']);
+            $players[] = new Player($playerInfo['number'], $playerInfo['name'], $playerInfo['position']);
         }
 
         return new Team($teamInfo['title'], $teamInfo['country'], $teamInfo['logo'], $players, $teamInfo['coach']);
@@ -89,6 +89,9 @@ class MatchBuilder
             switch ($event['type']) {
                 case 'startPeriod':
                     $period++;
+                    if ($period == 1) {
+                        $minute = 0;
+                    }
 
                     $players = $details['team1']['startPlayerNumbers'] ?? [];
                     if (count($players)) {
@@ -120,7 +123,8 @@ class MatchBuilder
             $match->addMessage(
                 $this->buildMinuteString($period, $event),
                 $event['description'],
-                $this->buildMessageType($event)
+                $this->buildMessageType($event),
+                $event['details']
             );
         }
     }
@@ -147,6 +151,8 @@ class MatchBuilder
                 return Match::GOAL_MESSAGE_TYPE;
             case 'replacePlayer':
                 return Match::REPLACE_PLAYER_MESSAGE_TYPE;
+            case 'startPeriod':
+                return Match::START_PERIOD_MESSAGE_TYPE;
             default:
                 return Match::INFO_MESSAGE_TYPE;
         }
