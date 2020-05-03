@@ -5,6 +5,7 @@ namespace App\Service;
 use App\Entity\Match;
 use Twig\Environment;
 use Twig\Loader\FilesystemLoader;
+use Twig\Extension\DebugExtension;
 
 class HtmlSaver
 {
@@ -13,8 +14,10 @@ class HtmlSaver
 
     public function __construct(string $templateDir, string $resultDir)
     {
+        $config['debug'] = true;
         $loader = new FilesystemLoader($templateDir);
-        $this->twig = new Environment($loader);
+        $this->twig = new Environment($loader, $config);
+        $this->twig->addExtension(new DebugExtension());
 
         $this->resultDir = rtrim($resultDir, DIRECTORY_SEPARATOR);
     }
